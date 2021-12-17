@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Task from './Task';
 import './TaskList.css';
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, toggleFn, deleteFn, descFn }) => {
   const getTaskListJSX = (tasks) => {
     return tasks.map((task) => {
       return (
-        <Task key={task.id} id={task.id} text={task.text} done={task.done} />
+        <Task key={task.id} id={task.id} text={task.text} 
+            done={task.done} showDesc={task.showDesc} 
+            toggleFn={toggleFn} deleteFn={deleteFn} descFn={descFn} />
       );
     });
   };
@@ -22,6 +24,9 @@ TaskList.propTypes = {
       done: PropTypes.bool.isRequired,
     })
   ).isRequired,
+  toggleFn: PropTypes.func,
+  deleteFn: PropTypes.func,
+  descFn: PropTypes.func
 };
 
 export default TaskList;
